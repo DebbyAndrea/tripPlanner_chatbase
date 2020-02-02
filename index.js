@@ -15,38 +15,43 @@ app.post("/dialogflow", express.json(), (req, res) => {
 
     let welcome = () => {
         let botResponse = "Hi... this is from welcome fulfillment";
-        // chatBase(agent, botResponse, true);
+        chatBase(agent, botResponse, true);
         agent.add(botResponse);
     }
 
     let fallback = () => {
         let botResponse = "Sorry... this is from fallback fulfillment";
-        // chatBase(agent, botResponse, false);
+        chatBase(agent, botResponse, false);
         agent.add(botResponse);
     }
 
     let bookFlights = () => {
         let botResponse = `Done! I've booked your tickets for ${agent.parameters.date}, flying from ${agent.parameters.geo_city} to ${agent.parameters.geo_city1}(ff)`;
+        chatBase(agent, botResponse, true);
         agent.add(botResponse);
     }
 
     let bookCars = () => {
         let botResponse = `I've booked ${agent.parameters.car_type} in ${agent.parameters.geo_city} for ${agent.parameters.date} for you (ff)`;
+        chatBase(agent, botResponse, true);
         agent.add(botResponse);
     }
 
     let bookRooms = () => {
         let botResponse = `Done! I've booked your room in ${agent.parameters.geo_city} for ${agent.parameters.date} (ff)`;
+        chatBase(agent, botResponse, true);
         agent.add(botResponse);
     }
 
     let bookFlightsCar = () => {
         let botResponse = `I've booked your car in ${agent.parameters.geo_city} for ${agent.parameters.date}`;
+        chatBase(agent, botResponse, true);
         agent.add(botResponse);
     }
 
     let bookFlightsRoom = () => {
         let botResponse = `Reserved a room in ${agent.parameters.geo_city} on ${agent.parameters.date}`;
+        chatBase(agent, botResponse, true);
         agent.add(botResponse);
     }
 

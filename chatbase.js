@@ -15,6 +15,7 @@ module.exports = function sendChatBaseRequest(agent, botResponse, flag) {
     const userMessage = messageSet.newMessage() // Create a new instance of Message
         .setAsTypeUser() // Mark it as a message coming from the human
         .setUserId(sessionId) // User ID on the chat platform, or custom ID
+        .setCustomSessionId(sessionId)
         .setTimestamp(Date.now().toString()) // Mandatory
         .setIntent(intentName) // The intent decoded from the user message, if applicable
         .setMessage(userInput); // User message
@@ -28,6 +29,7 @@ module.exports = function sendChatBaseRequest(agent, botResponse, flag) {
     const botMessage = messageSet.newMessage() // See above
         .setAsTypeAgent() // This message is the bot response
         .setUserId(sessionId) // Same as above
+        .setCustomSessionId(sessionId)
         .setTimestamp(botTime.toString()) // Mandatory
         .setIntent(intentName)
         .setMessage(botResponse); // Bot response message
@@ -35,7 +37,7 @@ module.exports = function sendChatBaseRequest(agent, botResponse, flag) {
     return messageSet.sendMessageSet()
     .then(response => {
         var createResponse = response.getCreateResponse();
-        console.log(response)
+        // console.log(response)
         console.log("request done");
         return createResponse.all_succeeded; // "true" if all messages were correctly formatted and have been successfully forwarded
     })
